@@ -3,7 +3,7 @@
   <head>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDD3o_vzkcWmw4-yDtuFZ0F4lioqWn8eU8"></script>
-    <script src="http://cooper-union-maps-proxy.herokuapp.com/js/draw.js"></script>
+    <script src="draw.js"></script>
 
     <script>
       $.getJSON("http://cooper-union-instagram-proxy.herokuapp.com/user/383099492/recent?count=33", function(response){
@@ -26,15 +26,17 @@
 
               "map": new google.maps.LatLng(response[i].location.latitude,response[i].location.longitude),
               "link":response[i].link,
-              'html': '<img src=' + response[i].images.low_resolution.url + '/>',
+              'html': '<a href="' + response[i].link + '">' + '<img src=' + response[i].images.low_resolution.url + '/></a>',
 
             }
 
             if((response[i].caption) && (response[i].caption.text !== null)) {
               position.title = response[i].caption.text;
               console.log(position.title);
-
             }
+          else{
+            position.title = " ";
+          }
 
             latCount++;
             latTotal += response[i].location.latitude;
@@ -64,12 +66,8 @@
 
       });
     </script>
-    <style>
-      #map {
-        height:800px;
-        width:1000px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
+
   </head>
   <body>
     <div id="map"></div>
