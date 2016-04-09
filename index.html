@@ -23,12 +23,17 @@
 
             var position = {
               // "title":response[i].caption.text,
+
               "map": new google.maps.LatLng(response[i].location.latitude,response[i].location.longitude),
-              "link":response[i].link
+              "link":response[i].link,
+              'html': '<img src=' + response[i].images.low_resolution.url + '/>',
+
             }
 
             if((response[i].caption) && (response[i].caption.text !== null)) {
-              position.text = response[i].caption.text;
+              position.title = response[i].caption.text;
+              console.log(position.title);
+
             }
 
             latCount++;
